@@ -1,0 +1,107 @@
+% Awesome CV LaTeX Template
+%
+% This template has been downloaded from:
+% https://github.com/huajh/huajh-awesome-latex-cv
+%
+% Author:
+% Junhao Hua
+
+
+%Section: Work Experience at the top
+\sectionTitle{项目经历}{\faCode}
+ 
+\begin{experiences}
+			
+ \experience
+    {2025年8月}   {易投诉/拦截人群识别} {网商银行} {独立负责}
+    {2025年7月} {
+                      \begin{itemize}
+                        \item 针对工信部投诉数据稀疏，取业务认可易投诉的人群进行合并y标建模；
+                        \item 在客户特征基础上，针对电销场景，构建智电、人电触达频次特征，用于模型优化；
+                        \item 构建深度学习模型，利用回测数据的AUC、分层召回率评判模型效果，部署上线最优版本；
+                        \item 设计AB实验方案，通过线上实验验证剔除头部易投诉人群可降低20\%客诉人数                                                                                        
+                      \end{itemize}
+                    }
+                    {触达频次, 深度学习, AB实验}
+  \emptySeparator
+  \experience
+    { 2025年8月} {实时任务推荐的交叉营销项目}{网商银行}{独立负责}
+    {2025年2月}    {
+                      \begin{itemize}
+                        \item 统计提额任务相关特征，如曝光量、申请量、转化量等，用于推荐任务特征; 
+                        \item 构建任务感知注意力机制的改进MMOE模型，通过注意力机制动态增强任务相关的特征，提升模型对任务关键信息的捕捉能力;
+                        \item 开发实时数据驱动的提额决策接口，完成毫秒级响应的提额任务推荐。                                                                                         
+                      \end{itemize}
+                    }
+                    {任务推荐, 注意力机制, MMOE, 决策接口}
+	
+  \emptySeparator
+  \experience
+  {2025年6月} {智电通知类文案生成}{网商银行}{独立负责}
+  {2025年5月 }    {
+				  	\begin{itemize}
+				  		\item 整合多维度用户画像（行业、线索）和权益，通过qwen72b自动生成个性化的电销通知文案；
+				  		\item 构建文案生成-评估-优化的多轮优化机制，结合A/B测试反馈数据持续迭代优化文案内容，确保输出质量与业务目标的精准对齐；
+				  	\end{itemize}
+				  }
+				  {LLM, 多轮优化, 文案生成}
+
+  \emptySeparator
+  \experience
+  {2024年12月} {电销场景下的渠道运筹}{网商银行}{独立负责}
+  {2024年10月}    {
+  	\begin{itemize}
+  		\item  整合客户特征和渠道特征，构建meta-learner的unlift预测模型；
+  		\item  在给定预算成本和小二人数约束下，通过PDAP分配算法求解客户-渠道最优决策方案。
+  	\end{itemize}
+  }
+  {unlift预测模型, 分配算法}
+  	
+  \emptySeparator
+  \experience
+  {2025年1月} {房抵贷潜客挖掘和多机构匹配项目}{网商银行}{独立负责}
+  {2024年7月 }    {
+				  	\begin{itemize}
+				  		\item  分阶段构建LightGBM模型作为baseline，快速启动项目并验证核心特征与baseline的有效性；
+				  		\item  引入多任务学习架构PLE，结合梯度冲突缓解策略GradVac，显著提升模型的泛化能力，最终通过在线AB测试实现关键指标提升100\%;
+				  		\item  融合度量学习技术，对银行机构进行深度表征聚类，构建客户-机构动态匹配模型，实现基于语义相似性与业务规则的双重智能排序。
+				  	\end{itemize}
+				  }
+				  {LightGBM, PLE, GradVac, 度量学习}
+
+  \emptySeparator
+  \experience
+  {2024年6月} {话务分类项目}{平安科技}{项目成员}
+  {2024年1月}    {
+				  	\begin{itemize}
+				  		\item 基于客戶坐席对话，通过大语言模型(LLM)聚类得到客戶意图的大类和二级分类。           
+				  		\item 针对多意图、同义词、交叉重叠意图等问题进行沟通解决，确保分类标签的准确性和一致性。 
+				  		\item 使用提供的数据集进行建模和打标工作，与业务方沟通验证标准，并确定需业务方提供的核验字段，为后续模型优化指定方向。 
+				  	\end{itemize}
+				  }
+				  {LLM,意图分类}
+
+	\emptySeparator
+  \experience
+  {2023年12月} {风险策略项目}{平安科技}{项目成员}
+  {2023年1月}    {
+				  	\begin{itemize}
+				  		\item 梳理、分析3k+特征，最终对11个特征大类300+特征进行加工落表；完成贷款产品的客群加工；                        
+				  		\item 通过数据挖掘算法（如Apriori）、机器学习算法（lightgbm）、网络筛选等方式进行特征挖掘
+				  		\item 通过技术指标和业务指标对风险策略进行筛选、回测验证，开发成整套挖掘、验证流程
+				  	\end{itemize}
+				  }
+				  {特征加工, 特征挖掘, 风险策略}
+		  				  
+  \emptySeparator
+  \experience
+  {2023年6月} {贷款营销项目}{平安科技}{项目成员}
+  {2021年7月}    {
+				  	\begin{itemize}
+				  		\item 通过lightgbm模型融合有效应对正负样本不均衡问题,并采用贝叶斯优化进行超参数调优，结合高阶特征工程与业务理解，持续提升模型区分能力；
+				  		\item 从产品维度构建多维度客户画像，融合用户行为与交易特征，动态优化名单优选策略，形成“规则初筛+模型精筛”的可迭代筛客模式，实现精准营销与风险控制。
+				  	\end{itemize}
+				  }
+				  {lightgbm, 贝叶斯优化,特征工程, 客户画像}
+		
+\end{experiences}

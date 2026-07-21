@@ -1,0 +1,107 @@
+% Awesome CV LaTeX Template
+%
+% This template has been downloaded from:
+% https://github.com/huajh/huajh-awesome-latex-cv
+%
+% Author:
+% Junhao Hua
+
+
+%Section: Work Experience at the top
+\sectionTitle{Projects}{\faCode}
+ 
+\begin{experiences}
+			
+ \experience
+    {August 2025}   {Identification of Complaint/Intercepted Customers} {Ant Group Co., Ltd.} {Independent Responsibility}
+    {July 2025} {
+                      \begin{itemize}
+                        \item Augmented sparse MIIT complaint data by integrating labels from business-identified, complaint-prone segments to enrich model training;
+                        \item Engineered telemarketing-specific features (e.g., Intelligent Call disposition, video software type) to enhance model performance;
+                        % \item 构建深度学习模型，利用回测数据的AUC、分层召回率评判模型效果，部署上线最优版本；
+                        \item Designed an A/B test plan; online experiments verified that removing top complaint-prone users reduced complaints by 20\%.                                                                                        
+                      \end{itemize}
+                    }
+                    {Deep Learning, A/B Testing}
+  \emptySeparator
+  \experience
+    {August 2025} {Real-Time Task Recommendation for Cross-Selling}{Ant Group Co., Ltd.}{Independent Responsibility}
+    {January 2025}    {
+                      \begin{itemize}
+                        \item Analyzed video task features (exposures, applications, conversions) for recommendation features;
+                        \item Built an improved MMOE model with task-aware attention mechanisms to dynamically enhance task-relevant features and improve capture of key information;
+                        \item Developed a real-time data-driven video decision interface enabling millisecond-level response for task recommendation.                      
+                      \end{itemize}
+                    }
+                    {Task Recommendation, Attention Mechanism, MMOE, Decision Interface}
+	
+  \emptySeparator
+  \experience
+  {June 2025} {Intelligent Call Notification Copy Generation}{Ant Group Co., Ltd.}{Independent Responsibility}
+  {May 2025 }    {
+				  	\begin{itemize}
+				  		\item Integrated multi-dimensional user profiles (industry, clues) and benefits, using Qwen-72B to automatically generate personalized telemarketing notification copy;
+				  		\item Established a multi-round copy generation-evaluation-optimization mechanism, iteratively improving content based on A/B test feedback to ensure quality and alignment with business goals.
+				  	\end{itemize}
+				  }
+				  {LLM, Multi-Round Optimization, Copy Generation}
+
+  \emptySeparator
+  \experience
+  {December 2024} {Channel Operations for Telemarketing}{Ant Group Co., Ltd.}{Independent Responsibility}
+  {June 2024}    {
+  	\begin{itemize}
+  		\item  Integrated customer and channel features to build a meta-learner Uplift prediction model;
+  		\item  Solved for optimal customer-channel allocation using the PDAP allocation algorithm under budget and agent number constraints.
+  	\end{itemize}
+  }
+  {Unlift Model, Allocation Algorithm}
+  	
+%   \emptySeparator
+%   \experience
+%   {January 2025} {mortgage loan prospect mining}{Ant Group Co., Ltd.}{Independent Responsibility}
+%   {July 2024 }    {
+% 				  	\begin{itemize}
+% 				  		\item  The LightGBM model was built in phases as a baseline to quickly launch the project and verify the effectiveness of core features and the baseline.
+% 				  		\item  The introduction of the multi-task learning architecture (PLE) combined with the gradient conflict mitigation strategy (GradVac) significantly improved the model's generalization capabilities, ultimately achieving a 100\% improvement in key metrics through online A/B testing.
+% 				  		\item  Metric learning techniques were integrated to perform deep representation and clustering of banking institutions, building a dynamic customer-institution matching model and achieving intelligent sorting based on both semantic similarity and business rules.
+% 				  	\end{itemize}
+% 				  }
+% 				  {LightGBM, PLE, GradVac, Metric Learning}
+
+  \emptySeparator
+  \experience
+  {June 2024} {Call Classification}{Ping An Technology}{Member}
+  {January 2024}    {
+				  	\begin{itemize}
+				  		\item Utilized Large Language Models (LLM) to cluster customer dialogue transcripts for primary and secondary intent classification;
+				  		\item Addressed challenges like multiple intents, synonyms, and overlapping intents to ensure accurate and consistent labeling;
+				  		\item Modeled and labeled using provided datasets; collaborated with business units to validate standards and define necessary verification fields for future model optimization.
+				  	\end{itemize}
+				  }
+				  {LLM, Intent Classification}
+
+	\emptySeparator
+  \experience
+  {December 2023} {Risk Strategy}{Ping An Technology}{Member}
+  {January 2023}    {
+				  	\begin{itemize}
+				  		\item Analyzed and processed 3,000+ features, finalizing over 300 features across 11 major categories for table creation; completed customer segment processing for loan products;
+				  		\item Conducted feature mining using data mining algorithms (e.g., Apriori), machine learning algorithms (LightGBM), and correlation network filtering;
+				  		\item Screened and backtested risk strategies using technical and business metrics, developing a complete mining and validation process.
+				  	\end{itemize}
+				  }
+				  {Feature Processing, Feature Mining, Risk Strategy}
+		  				  
+  \emptySeparator
+  \experience
+  {June 2023} {Loan Marketing }{Ping An Technology}{Member}
+  {July 2021}    {
+				  	\begin{itemize}
+				  		\item Addressed class imbalance using LightGBM model fusion, employed Bayesian Optimization for hyperparameter tuning, and enhanced model discrimination through advanced feature engineering and business understanding;
+				  		\item Built multi-dimensional customer profiles from product perspectives, integrating user behavior and transaction features to dynamically optimize selection strategies, forming an iterative "rule pre-screening + model fine-screening" process for precise marketing and risk control.
+				  	\end{itemize}
+				  }
+				  {LightGBM, Bayesian Optimization, Feature Engineering,Customer Profile}
+		
+\end{experiences}
