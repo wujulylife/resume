@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>吴胜帆 · 高级AI工程师</title>
+<style>
+  :root {
+    --accent: #000066;
+    --accent-2: #1a3a8a;
+    --ink: #1a1a1a;
+    --muted: #555;
+    --soft: #888;
+    --line: #dde0ea;
+    --wash: #f5f7fb;
+    --tag-bg: #eaf2fb;
+    --tag-fg: #2f5f9a;
+    --tag-bd: #b8d0ea;
+    --bg: #e6e8ef;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--bg);
+    font-family: "Source Sans Pro", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 8.9pt;
+    line-height: 1.42;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet {
+    width: 210mm;
+    margin: 14px auto;
+    padding: 8mm 10.5mm 8mm;
+    background: #fff;
+    box-shadow: 0 8px 32px rgba(0,0,40,.12);
+    position: relative;
+  }
+  .sheet::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--accent) 0%, #3d5a9e 100%);
+  }
+
+  /* Header */
+  .header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border-bottom: none;
+    background: linear-gradient(180deg, #f7f8fc 0%, #fff 75%);
+    margin: -1mm -2mm 6px;
+    padding: 2mm 3mm 6px;
+    border-radius: 0 0 2px 2px;
+  }
+  .header-text { flex: 1; min-width: 0; }
+  .name {
+    margin: 0;
+    font-size: 20.5pt;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .08em;
+    line-height: 1.05;
+  }
+  .tagline {
+    display: inline-block;
+    margin: 3px 0 6px;
+    padding: 0.3em 0.65em 0.35em;
+    font-size: 9.2pt;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 3px;
+    letter-spacing: .04em;
+    line-height: 1.55;
+    overflow: visible;
+  }
+  .contacts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 12px;
+    font-size: 8.4pt;
+    color: var(--muted);
+  }
+  .contacts .ci {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ico, .sec-ico {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+  .sec-ico { width: 13px; height: 13px; }
+  .ico svg, .sec-ico svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+  .photo {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2.5px solid #fff;
+    box-shadow: 0 0 0 2px var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* Sections */
+  .sec { margin-top: 5px; }
+  .sec-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 4px;
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .08em;
+    text-transform: none;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  .sec-title::after {
+    content: "";
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--accent), transparent 85%);
+    opacity: .35;
+  }
+
+  .bio {
+    background: var(--wash);
+    border-radius: 3px;
+    padding: 5px 8px;
+    border: 1px solid #e8ebf3;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .bio .sec-title { margin-bottom: 3px; }
+  .bio .sec-title::after { display: none; }
+  .bio p { margin: 1px 0; color: #333; }
+  .bio strong { color: var(--accent); }
+
+  /* PDF pagination is handled by build_b_pdf.py (chunked 2-page render) */
+  .sec-projects {
+    break-before: auto;
+    page-break-before: auto;
+    padding-top: 0;
+  }
+  .sec-works { padding-bottom: 0; }
+
+  .entry, .edu-row {
+    display: block;
+    margin: 0 0 4.5px 0;
+  }
+  .entry:not(:last-child) {
+    padding-bottom: 3.5px;
+    border-bottom: 1px solid var(--line);
+  }
+  .entry-top {
+    display: flex;
+    align-items: flex-start;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .time {
+    flex: 0 0 62px;
+    width: 62px;
+    text-align: right;
+    font-size: 7.4pt;
+    color: var(--soft);
+    line-height: 1.4;
+    padding: 2px 8px 0 0;
+    box-sizing: border-box;
+  }
+  .time .to {
+    display: block;
+    font-size: 8.2pt;
+    font-weight: 700;
+    color: var(--accent-2);
+  }
+  /* Work: LaTeX work style — start | "- end， role， company"; no column rule */
+  .sec-works .entry-top { align-items: baseline; }
+  .sec-works .time {
+    border-right: none;
+    color: var(--ink);
+    font-size: 8.5pt;
+    font-weight: 700;
+    line-height: 1.35;
+    padding-top: 0;
+  }
+  .sec-works .head-body { padding-left: 0; }
+  .sec-works .hd { margin-bottom: 0; }
+  .sec-works .work-range { font-weight: 700; color: var(--ink); }
+  .sec-works .meta { color: var(--ink); font-size: 8.5pt; font-weight: 700; }
+  .sec-works .entry-main { box-shadow: none; }
+
+  /* Projects: one continuous rule like Awesome-CV longtable | */
+  .sec-projects .proj-rail {
+    position: relative;
+    margin-left: 74px;
+    border-left: 1.25px solid #8e95a8;
+    padding-left: 12px;
+  }
+  .sec-projects .entry {
+    display: block;
+    position: relative;
+    border-bottom: none;
+    margin: 0 0 10px;
+    padding: 0;
+  }
+  .sec-projects .entry:last-child { margin-bottom: 0; }
+  .sec-projects .time {
+    position: absolute;
+    right: 100%;
+    top: 0;
+    width: 62px;
+    margin-right: 12px;
+    border-right: none;
+    padding: 1px 0 0;
+    text-align: right;
+  }
+  .sec-projects .entry-body {
+    padding: 0;
+    min-width: 0;
+    border-left: none;
+  }
+  .sec-projects .entry-body .hd { margin-bottom: 2px; }
+
+  .edu-row .time { border-right: none; }
+  .head-body {
+    flex: 1;
+    min-width: 0;
+    padding: 1px 0 0 10px;
+  }
+  .entry-main {
+    margin-left: 62px;
+    padding: 0 0 1px 10px;
+  }
+  .hd { margin-bottom: 1px; line-height: 1.4; }
+  .hd .title { margin-right: 6px; }
+  .title { font-size: 9.5pt; font-weight: 700; color: var(--ink); }
+  .meta { font-size: 8.2pt; color: var(--muted); }
+  .meta .dot { margin: 0 3px; color: #c5cad8; }
+  .role-pill {
+    display: inline-block;
+    font-size: 7.2pt;
+    color: var(--accent);
+    background: #eef0f8;
+    border: 1px solid #c8cde0;
+    border-radius: 3px;
+    padding: 1px 5px 1px;
+    line-height: 1.45;
+    white-space: nowrap;
+  }
+  ul { margin: 1.5px 0 0; padding-left: 1.05em; }
+  li {
+    margin: 1.5px 0;
+    color: #2a2a2a;
+    line-height: 1.42;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 0;
+  }
+  li strong { color: #111; font-weight: 600; }
+  li::marker { color: var(--accent); }
+
+  .kw {
+    margin-top: 2px;
+    padding: 0 0 1px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .kw span {
+    display: inline-block;
+    font-size: 6.9pt;
+    line-height: 1.55;
+    color: var(--tag-fg);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-bd);
+    border-radius: .35em;
+    padding: 1px .45em 2px;
+    margin: 0 2px 2px 0;
+  }
+
+  .edu-row {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 4px;
+  }
+  .award {
+    font-size: 7.5pt;
+    color: var(--muted);
+    margin-top: 1px;
+    line-height: 1.4;
+  }
+  .award::before {
+    content: "★ ";
+    color: #c4a035;
+    font-size: 7.5pt;
+  }
+
+  .skills-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 10px;
+    background: var(--wash);
+    border: 1px solid #e8ebf3;
+    border-radius: 3px;
+    padding: 5px 8px;
+  }
+  .skill-item { font-size: 8.2pt; line-height: 1.38; }
+  .skill-item .k {
+    display: block;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 7.4pt;
+    margin-bottom: 0;
+  }
+  .skill-item .v { color: #333; }
+
+  .strengths {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+  }
+  .strengths div {
+    background: var(--wash);
+    border: 1px solid #e8ebf3;
+    border-top: 2.5px solid var(--accent);
+    border-radius: 0 0 3px 3px;
+    padding: 5px 7px 6px;
+    font-size: 7.7pt;
+    color: var(--muted);
+    line-height: 1.38;
+  }
+  .strengths b {
+    display: block;
+    color: var(--accent);
+    font-size: 8.4pt;
+    margin-bottom: 2px;
+  }
+
+  .sec-title {
+    padding-top: 1px;
+    line-height: 1.4;
+  }
+
+  @media print {
+    body { background: #fff; line-height: 1.38; }
+    .sheet { margin: 0; box-shadow: none; width: auto; padding: 0; overflow: visible; }
+    .sheet::before { display: none; }
+    .header { margin: 0 0 5px; padding: 0 0 5px; background: none; }
+    @page { size: A4; margin: 8.5mm 10mm 11mm 10mm; }
+  }
+</style>
+</head>
+<body>
+<article class="sheet">
+
+  <header class="header">
+    <div class="header-text">
+      <h1 class="name">吴胜帆</h1>
+      <div class="tagline">高级AI工程师</div>
+      <div class="contacts">
+        <div class="ci">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg></span>
+          (+86) 15172408257
+        </div>
+        <div class="ci">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg></span>
+          2118599692@qq.com
+        </div>
+        <div class="ci">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg></span>
+          上海市浦东新区
+        </div>
+        <div class="ci">
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13.2V21h6v-4h2v4h6v-7.8L12 9.5 5 13.2zM12 2 2 9h2v2h16V9h2L12 2z"/></svg></span>
+          华中科技大学 · 本硕（统计 / 数学）
+        </div>
+      </div>
+    </div>
+    <img class="photo" src="../wushengfan.jpg" alt="" />
+  </header>
+
+  <section class="sec bio">
+    <h2 class="sec-title">
+      <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8V22h19.2v-2.8c0-3.2-6.4-4.8-9.6-4.8z"/></svg></span>
+      简介
+    </h2>
+    <p>约 5 年算法经验：平安科技 → 蚂蚁网商 → <strong>嘉银科技（高级AI工程师）</strong>。长期在消费金融做算法研发与落地，覆盖风控评分、智能营销、资金匹配与广告素材智能化。</p>
+    <p><strong>方向：</strong>机器学习与推荐、多任务学习（MMOE/PLE）、因果推断、多模态大模型工程；重视可核对指标与上线闭环。</p>
+  </section>
+
+  <section class="sec">
+    <h2 class="sec-title">
+      <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 13.2V21h6v-4h2v4h6v-7.8L12 9.5 5 13.2zM12 2 2 9h2v2h16V9h2L12 2z"/></svg></span>
+      教育背景
+    </h2>
+    <div class="edu-row">
+      <div class="entry-top">
+        <div class="time"><span class="to">2021.06</span>2018.09</div>
+        <div class="head-body">
+          <div class="hd"><span class="title">硕士 · 统计学</span><span class="meta">华中科技大学 · 数学与统计学院</span></div>
+        <div class="award">奖励：「华为杯」数学建模竞赛二等奖；「华为云杯」人工智能创新应用大赛亚军</div>
+        </div>
+      </div>
+    </div>
+    <div class="edu-row">
+      <div class="entry-top">
+        <div class="time"><span class="to">2018.06</span>2014.09</div>
+        <div class="head-body">
+          <div class="hd"><span class="title">本科 · 数学与应用数学</span><span class="meta">华中科技大学 · 数学与统计学院</span></div>
+        <div class="award">奖励：优秀毕业生称号</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-works">
+    <h2 class="sec-title">
+      <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 0h-4V4h4v2z"/></svg></span>
+      工作经历
+    </h2>
+
+    <div class="entry">
+      <div class="entry-top">
+        <div class="time">2025.11</div>
+        <div class="head-body">
+          <div class="hd"><span class="work-range">- 至今，</span> <span class="meta">高级AI工程师，嘉银科技</span></div>
+        </div>
+      </div>
+      <div class="entry-main">
+        <ul>
+          <li><strong>资配匹配：</strong>负责贷款订单与资金产品的实时定价与批量最优匹配，并搭建同口径仿真评估链路</li>
+          <li><strong>征信评分：</strong>基于征信特征构建中征信分回归模型（主看排序与分箱，RMSE 作回归监控），完成预测服务上线与一致性校验</li>
+          <li><strong>素材智能化：</strong>搭建图像/视频多模态描述与广告视频 Prompt 生成能力，支撑投放素材理解与 AIGC 生产</li>
+        </ul>
+        <div class="kw"><span>资配匹配</span><span>征信建模</span><span>多模态</span><span>LLM工程</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-top">
+        <div class="time">2024.07</div>
+        <div class="head-body">
+          <div class="hd"><span class="work-range">- 2025.08，</span> <span class="meta">高级算法工程师，蚂蚁胜信（网商银行）</span></div>
+        </div>
+      </div>
+      <div class="entry-main">
+        <ul>
+          <li>投诉管控：易投诉人群识别上线，AB 验证剔除高风险人群后客诉人数下降约 20%</li>
+          <li>交叉营销：注意力增强 MMOE 实时提额任务推荐，日均人产提升约 10%</li>
+          <li>房抵贷获客：PLE 精细化圈选，在线 AB 关键转化指标接近翻倍</li>
+          <li>渠道与话术：结合因果推断相关增量预估与资源分配，并基于 LLM 生成个性化电销文案</li>
+        </ul>
+        <div class="kw"><span>营销算法</span><span>多任务学习</span><span>投诉管控</span><span>LLM</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-top">
+        <div class="time">2021.07</div>
+        <div class="head-body">
+          <div class="hd"><span class="work-range">- 2024.07，</span> <span class="meta">算法工程师，平安科技（机器学习基础平台）</span></div>
+        </div>
+      </div>
+      <div class="entry-main">
+        <ul>
+          <li>贷款潜客挖掘：特征工程 + LightGBM 多模型融合，支撑项目相关年度营销业绩约 20 亿</li>
+          <li>风控策略辅助：稳定特征筛选与可解释规则沉淀，服务画像与贷中策略</li>
+          <li>智能质检/意图：参与坐席对话意图大模型分类与标注标准建设</li>
+        </ul>
+        <div class="kw"><span>营销算法</span><span>风控策略</span><span>特征工程</span><span>LLM</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-projects">
+    <h2 class="sec-title">
+      <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg></span>
+      项目经历
+    </h2>
+
+    <div class="proj-rail">
+
+    <div class="entry">
+      <div class="time"><span class="to">至今</span>2025.11</div>
+      <div class="entry-body">
+        <div class="hd"><span class="title">资配实时定价与订单–资金匹配</span>
+          <span class="meta">嘉银科技<span class="dot">·</span><span class="role-pill">独立负责</span></span></div>
+        <ul>
+          <li><strong>问题：</strong>在资金计划、风控与利率等约束下，将贷款订单匹配到多资金方产品</li>
+          <li><strong>方案：</strong>搭建「实时定价 → 订单缓冲 → 分批最优匹配（KM/整数规划）→ 用信仿真」链路</li>
+          <li><strong>创新：</strong>引入强化学习（PPO）输出定价区间，与规则产品优选同口径对比匹配率与资产/资金利用率</li>
+          <li><strong>产出：</strong>相对真实路由，整体资产利用率约 +1.1 个百分点（98.6% vs 97.5%），并形成可复现对比看板</li>
+        </ul>
+        <div class="kw"><span>实时定价</span><span>最优匹配</span><span>强化学习</span><span>仿真评估</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="time"><span class="to">至今</span>2026.02</div>
+      <div class="entry-body">
+        <div class="hd"><span class="title">RTA 场景中征信分预测与上线</span>
+          <span class="meta">嘉银科技<span class="dot">·</span><span class="role-pill">独立负责</span></span></div>
+        <ul>
+          <li><strong>问题：</strong>业务希望用中征信分刻画客户价值，但对大量存量/实时流量无法直接获得真分</li>
+          <li><strong>方案：</strong>LightGBM 回归预测分数；特征由约 5 万维筛选至约 500 维，测试集 RMSE≈98.37（回归监控）</li>
+          <li><strong>评估：</strong>主看预测分排序与等频分箱业务分层/通过率，核对真实分与预测分分箱一致性</li>
+          <li><strong>工程：</strong>完成模型发布，并做 Java 预测包（JAR）在线与离线打分一致性校验</li>
+        </ul>
+        <div class="kw"><span>LightGBM</span><span>分箱评估</span><span>Java部署</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="time"><span class="to">至今</span>2026.02</div>
+      <div class="entry-body">
+        <div class="hd"><span class="title">广告素材多模态理解与 AIGC Prompt</span>
+          <span class="meta">嘉银科技<span class="dot">·</span><span class="role-pill">独立负责</span></span></div>
+        <ul>
+          <li><strong>问题：</strong>投放素材量大、人工理解成本高，同时需要可直接用于视频生成工具的高质量中文 Prompt</li>
+          <li><strong>方案：</strong>上线多模态描述服务——维表查询 → 对象存储拉取 → vLLM（Qwen 等）结构化描述 → 数仓落表</li>
+          <li><strong>AIGC：</strong>对高消耗标签组合做创意扩写与采样，生成可灵/Seedance 视频 Prompt，并用相似度去重</li>
+          <li><strong>产出：</strong>提供同步/异步 API 与 Web 预览，将素材理解与内容生产串成可复用闭环</li>
+        </ul>
+        <div class="kw"><span>多模态大模型</span><span>vLLM</span><span>AIGC</span><span>Prompt工程</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="time"><span class="to">2025.08</span>2025.07</div>
+      <div class="entry-body">
+        <div class="hd"><span class="title">易投诉 / 拦截人群识别</span>
+          <span class="meta">网商银行<span class="dot">·</span><span class="role-pill">独立负责</span></span></div>
+        <ul>
+          <li><strong>问题：</strong>工信部投诉样本稀疏，需识别高客诉风险人群以降低触达伤害</li>
+          <li><strong>方案：</strong>合并业务认可易投诉标签扩充监督信号，并构造智电/人电触达频次等场景特征</li>
+          <li><strong>结果：</strong>线上 AB 验证剔除头部易投诉人群，客诉人数下降约 20%</li>
+        </ul>
+        <div class="kw"><span>稀疏样本</span><span>深度学习</span><span>AB实验</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="time"><span class="to">2025.08</span>2025.02</div>
+      <div class="entry-body">
+        <div class="hd"><span class="title">实时提额任务推荐（交叉营销）</span>
+          <span class="meta">网商银行<span class="dot">·</span><span class="role-pill">独立负责</span></span></div>
+        <ul>
+          <li><strong>问题：</strong>提额等任务推荐需兼顾曝光、申请、转化等多目标，并要求实时响应</li>
+          <li><strong>方案：</strong>统计任务侧行为特征，构建「任务感知注意力」改进的 MMOE 多任务模型</li>
+          <li><strong>工程：</strong>开发毫秒级实时决策接口并上线，整体日均人产提升约 10%</li>
+        </ul>
+        <div class="kw"><span>多任务学习</span><span>MMOE</span><span>实时推荐</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="time"><span class="to">2025.01</span>2024.07</div>
+      <div class="entry-body">
+        <div class="hd"><span class="title">房抵贷潜客挖掘与机构匹配</span>
+          <span class="meta">网商银行<span class="dot">·</span><span class="role-pill">独立负责</span></span></div>
+        <ul>
+          <li><strong>问题：</strong>房抵贷获客需要更准的潜客识别，并匹配合适合作机构</li>
+          <li><strong>方案：</strong>LightGBM baseline 验证后升级为 PLE 多任务结构，并用 GradVac 缓解梯度冲突</li>
+          <li><strong>结果：</strong>在线 AB 关键转化类指标接近翻倍；度量学习表征机构，完成客户–机构智能排序</li>
+        </ul>
+        <div class="kw"><span>LightGBM</span><span>PLE</span><span>度量学习</span><span>AB实验</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="time"><span class="to">2024.06</span>2024.01</div>
+      <div class="entry-body">
+        <div class="hd"><span class="title">话务意图分类</span>
+          <span class="meta">平安科技<span class="dot">·</span><span class="role-pill">项目成员</span></span></div>
+        <ul>
+          <li><strong>问题：</strong>坐席对话意图多样、同义词与交叉重叠多，需沉淀可复用意图标签体系</li>
+          <li><strong>方案：</strong>基于客户–坐席对话，用大语言模型聚类得到意图大类与二级分类，并与业务对齐核验字段</li>
+          <li><strong>产出：</strong>完成建模与打标流程建设，提升意图识别准确率与标注一致性</li>
+        </ul>
+        <div class="kw"><span>LLM</span><span>意图分类</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="time"><span class="to">2023.12</span>2023.01</div>
+      <div class="entry-body">
+        <div class="hd"><span class="title">贷款风险策略挖掘</span>
+          <span class="meta">平安科技<span class="dot">·</span><span class="role-pill">项目成员</span></span></div>
+        <ul>
+          <li><strong>问题：</strong>需从海量特征中筛选稳定、可解释规则，服务贷中管控</li>
+          <li><strong>方案：</strong>加工 11 个特征大类 300+ 特征；结合关联规则、LightGBM 与相关性筛选做特征/规则挖掘</li>
+          <li><strong>产出：</strong>形成策略筛选、回测与验证流程，沉淀挖掘–验证闭环</li>
+        </ul>
+        <div class="kw"><span>特征加工</span><span>风险策略</span><span>规则挖掘</span></div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="time"><span class="to">2023.06</span>2021.07</div>
+      <div class="entry-body">
+        <div class="hd"><span class="title">贷款营销潜客挖掘</span>
+          <span class="meta">平安科技<span class="dot">·</span><span class="role-pill">项目成员</span></span></div>
+        <ul>
+          <li><strong>问题：</strong>贷款营销名单正负样本不均衡，需在控风险前提下提高转化质量</li>
+          <li><strong>方案：</strong>LightGBM 多模型融合 + 超参搜索，结合业务特征工程提升区分能力</li>
+          <li><strong>策略：</strong>形成「规则初筛 + 模型精筛」可迭代筛客流程，支撑项目相关年度营销业绩约 20 亿</li>
+        </ul>
+        <div class="kw"><span>LightGBM</span><span>客户画像</span><span>精准营销</span></div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="sec sec-skills">
+    <h2 class="sec-title">
+      <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg></span>
+      相关技能
+    </h2>
+    <div class="skills-wrap">
+      <div class="skill-item"><span class="k">编程工具</span><span class="v">Python、SQL、Spark；Linux / Git</span></div>
+      <div class="skill-item"><span class="k">算法建模</span><span class="v">机器学习；推荐模型；多任务学习（MMOE、PLE）；因果推断；AB / 分箱评估</span></div>
+      <div class="skill-item"><span class="k">大模型</span><span class="v">Prompt 工程；vLLM 本地部署；图像/视频多模态理解；AIGC Prompt 生成</span></div>
+      <div class="skill-item"><span class="k">算法工程</span><span class="v">FastAPI 服务接口开发；Java 预测包封装与发布</span></div>
+    </div>
+  </section>
+
+  <section class="sec sec-strengths">
+    <h2 class="sec-title">
+      <span class="sec-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.3l.9-4.6.1-.6c0-.4-.2-.8-.4-1.1L14.2 1 7.6 7.6C7.2 7.9 7 8.4 7 9v10c0 1.1.9 2 2 2h9c.8 0 1.5-.5 1.8-1.2l3.0-7.1c.1-.2.2-.5.2-.7V10z"/></svg></span>
+      优势亮点
+    </h2>
+    <div class="strengths">
+      <div><b>独立闭环</b>能把模糊业务问题拆成可建模目标，独立完成方案、指标验证到上线交付</div>
+      <div><b>结果导向</b>习惯用客诉率、人产、转化、RMSE、匹配率等可核对指标说话</div>
+      <div><b>场景广度</b>兼具风控营销建模、运筹匹配与多模态 LLM 工程经验</div>
+    </div>
+  </section>
+
+</article>
+</body>
+</html>

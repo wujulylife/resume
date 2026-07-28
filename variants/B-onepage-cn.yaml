@@ -1,0 +1,13 @@
+geometry: margin=1.2cm
+fontsize: 10pt
+mainfont: Noto Sans CJK SC
+documentclass: article
+header-includes:
+  - \usepackage{setspace}
+  - \setstretch{1.15}
+  - \usepackage{titlesec}
+  - \titlespacing*{\section}{0pt}{0.6em}{0.25em}
+  - \titlespacing*{\subsection}{0pt}{0.4em}{0.15em}
+  - \usepackage{enumitem}
+  - \setlist{nosep,leftmargin=1.2em}
+  - \pagestyle{empty}
